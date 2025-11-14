@@ -71,6 +71,7 @@ export default function AssessmentPortfolio() {
       </div>
 
       {/* CONTENT AREA WITH MODERN CARDS */}
+      {/*mewa wens nokranuuuu  */}
       <main className="max-w-5xl mx-auto px-4 md:px-6 py-12 space-y-12">
         {chapters.map((c) => {
           const setRef = (el) => (sectionRefs.current[c.id] = el);
@@ -106,7 +107,7 @@ export default function AssessmentPortfolio() {
                 );
             }
           };
-
+          {/*mewa wens nokranuuuu  */}
           return (
             <section
               key={c.id}
