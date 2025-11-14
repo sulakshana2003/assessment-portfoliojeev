@@ -1,24 +1,23 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import Chapter1Section from "./pages/chapter/Chapter1.jsx";
-import Chapter2Section from "./pages/chapter/Chapter2.jsx";
-import Chapter3Section from "./pages/chapter/Chapter3.jsx";
-import Chapter4Section from "./pages/chapter/Chapter4.jsx";
+import Chapter1Section from "./pages/chapter/Chapter1";
+import Chapter2Section from "./pages/chapter/Chapter2";
+import Chapter3Section from "./pages/chapter/Chapter3";
+import Chapter4Section from "./pages/chapter/Chapter4";
 
-// 🌈 Gradient background + Top Navigation Layout
 export default function AssessmentPortfolio() {
   const chapters = useMemo(
     () => [
-      { id: "ch1", title: "Introduction to Professional Skills", body: sampleIntro },
-      { id: "ch2", title: "Teamwork & Collaboration", body: "Clear goals, roles, and communication make teamwork effective." },
-      { id: "ch3", title: "Communication Skills", body: "7Cs: clear, concise, concrete, correct, coherent, complete, courteous." },
-      { id: "ch4", title: "Leadership & Ethics", body: "Leadership blends vision with responsibility." },
-      { id: "ch5", title: "Problem Solving", body: "Fishbone, 5-Whys, Pareto analysis help in solving problems." },
-      { id: "ch6", title: "Time Management", body: "Prioritize tasks, use Pomodoro and time-boxing." },
-      { id: "ch7", title: "Emotional Intelligence", body: "Self-awareness, empathy, self-regulation, motivation." },
-      { id: "ch8", title: "Interview Prep", body: "STAR answers, mock interviews, portfolio evidence." },
-      { id: "ch9", title: "CV & Cover Letter", body: "Tailored summary, achievement-focused bullet points." },
-      { id: "ch10", title: "Dining & Etiquette", body: "Professional behaviour in formal settings." },
-      { id: "ch11", title: "Research Writing", body: "Plagiarism-free writing, citations, sources." },
+      { id: "ch1", title: "Introduction", body: sampleIntro },
+      { id: "ch2", title: "Teamwork", body: "Clear communication and collaboration improve outcomes." },
+      { id: "ch3", title: "Communication", body: "7Cs improve clarity and confidence." },
+      { id: "ch4", title: "Leadership", body: "Good leaders inspire trust and ethical behaviour." },
+      { id: "ch5", title: "Problem Solving", body: "Use 5-Whys, Fishbone and Pareto." },
+      { id: "ch6", title: "Time Management", body: "Prioritize tasks and avoid distractions." },
+      { id: "ch7", title: "Emotional Intelligence", body: "Self-awareness and empathy matter." },
+      { id: "ch8", title: "Interview Skills", body: "STAR answers and confidence." },
+      { id: "ch9", title: "CV Writing", body: "Tailor and highlight achievements." },
+      { id: "ch10", title: "Etiquette", body: "Professional behaviour in formal settings." },
+      { id: "ch11", title: "Research Writing", body: "Academic integrity and citations." },
     ],
     []
   );
@@ -26,152 +25,88 @@ export default function AssessmentPortfolio() {
   const [active, setActive] = useState("ch1");
   const sectionRefs = useRef({});
 
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => e.isIntersecting && setActive(e.target.id));
-      },
-      { rootMargin: "-40% 0px -55% 0px" }
-    );
-
-    chapters.forEach(
-      (c) => sectionRefs.current[c.id] && obs.observe(sectionRefs.current[c.id])
-    );
-
-    return () => obs.disconnect();
-  }, [chapters]);
-
-  const scrollTo = (id) =>
+  const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setActive(id);
+  };
 
   return (
-    <div className="min-h-screen text-gray-900 bg-gradient-to-br from-green-200 via-teal-100 to-blue-200">
-      {/* 🌟 TOP NAVIGATION BAR */}
-      <header className="sticky top-0 z-40 bg-white/80 backdrop-blur shadow-md">
-        <div className="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center gap-3 justify-between">
-          <h1 className="text-lg font-bold tracking-tight">Assessment Portfolio</h1>
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-50 to-pink-100 text-gray-900">
 
-          <nav className="flex overflow-x-auto gap-2 pb-2 no-scrollbar">
-            {chapters.map((c, idx) => (
-              <button
-                key={c.id}
-                onClick={() => scrollTo(c.id)}
-                className={
-                  "px-4 py-2 rounded-full text-sm font-semibold border transition whitespace-nowrap " +
-                  (active === c.id
-                    ? "bg-green-600 text-white border-green-600"
-                    : "bg-white text-gray-700 border-green-300 hover:bg-green-100")
-                }
-              >
-                {`Chapter ${idx + 1}`}
-              </button>
-            ))}
-          </nav>
+      {/* HERO SECTION */}
+      <section className="py-16 text-center">
+        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-800 drop-shadow-sm">
+          Professional Skills Portfolio
+        </h1>
+        <p className="mt-4 text-gray-600 max-w-2xl mx-auto text-lg">
+          A modern learning journey reflection showcasing key lessons, skills and personal development.
+        </p>
+      </section>
+
+      {/* MODERN NAVIGATION TABS */}
+      <div className="sticky top-0 z-30 bg-white/60 backdrop-blur shadow">
+        <div className="flex overflow-x-auto gap-3 px-4 py-3 no-scrollbar justify-center">
+          {chapters.map((c) => (
+            <button
+              key={c.id}
+              onClick={() => scrollTo(c.id)}
+              className={
+                "px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 " +
+                (active === c.id
+                  ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md scale-105"
+                  : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-100")
+              }
+            >
+              {c.title}
+            </button>
+          ))}
         </div>
-      </header>
+      </div>
 
-      {/* 🌟 CONTENT AREA */}
-      <main className="max-w-6xl mx-auto px-4 md:px-6 pt-8 pb-20">
+      {/* CONTENT AREA WITH MODERN CARDS */}
+      <main className="max-w-5xl mx-auto px-4 md:px-6 py-12 space-y-12">
         {chapters.map((c) => {
           const setRef = (el) => (sectionRefs.current[c.id] = el);
 
-          if (c.id === "ch1") {
-            return (
-              <article
-                key="ch1"
-                id="ch1"
-                ref={setRef}
-                className="scroll-mt-24 bg-white shadow-lg border border-gray-200 rounded-2xl p-6 md:p-8 mb-8"
-              >
-                <Chapter1Section />
-              </article>
-            );
-          }
-
-          if (c.id === "ch2") {
-            return (
-              <article
-                key="ch2"
-                id="ch2"
-                ref={setRef}
-                className="scroll-mt-24 bg-white shadow-lg border border-gray-200 rounded-2xl p-6 md:p-8 mb-8"
-              >
-                <Chapter2Section />
-              </article>
-            );
-          }
-
-          if (c.id === "ch3") {
-            return (
-              <article
-                key="ch3"
-                id="ch3"
-                ref={setRef}
-                className="scroll-mt-24 bg-white shadow-lg border border-gray-200 rounded-2xl p-6 md:p-8 mb-8"
-              >
-                <Chapter3Section />
-              </article>
-            );
-          }
-
-          if (c.id === "ch4") {
-            return (
-              <article
-                key="ch4"
-                id="ch4"
-                ref={setRef}
-                className="scroll-mt-24 bg-white shadow-lg border border-gray-200 rounded-2xl p-6 md:p-8 mb-8"
-              >
-                <Chapter4Section />
-              </article>
-            );
-          }
+          const renderChapterComponent = () => {
+            switch (c.id) {
+              case "ch1":
+                return <Chapter1Section />;
+              case "ch2":
+                return <Chapter2Section />;
+              case "ch3":
+                return <Chapter3Section />;
+              case "ch4":
+                return <Chapter4Section />;
+              default:
+                return (
+                  <p className="text-gray-700 leading-relaxed">{c.body}</p>
+                );
+            }
+          };
 
           return (
-            <article
+            <section
               key={c.id}
               id={c.id}
               ref={setRef}
-              className="scroll-mt-24 bg-white border border-gray-200 rounded-2xl shadow p-6 md:p-8 mb-8"
+              className="scroll-mt-32"
             >
-              <h2 className="text-2xl md:text-3xl font-bold mb-2">{c.title}</h2>
-              <p className="text-gray-600 mb-4">Chapter overview</p>
-              <p className="text-gray-700">{c.body}</p>
-            </article>
+              <div className="p-8 bg-white/70 border border-gray-200 shadow-xl rounded-3xl backdrop-blur-lg hover:shadow-2xl transition-all duration-300">
+                <h2 className="text-3xl font-extrabold mb-3 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  {c.title}
+                </h2>
+                <div className="mt-4">{renderChapterComponent()}</div>
+              </div>
+            </section>
           );
         })}
       </main>
-
-      <ReadingProgress />
     </div>
   );
 }
 
-function ReadingProgress() {
-  const [pct, setPct] = useState(0);
-  useEffect(() => {
-    const onScroll = () => {
-      const st = window.scrollY;
-      const h =
-        document.documentElement.scrollHeight -
-        document.documentElement.clientHeight;
-      setPct((st / h) * 100);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  return (
-    <div className="fixed bottom-6 right-6 hidden md:flex items-center bg-white/90 border border-gray-200 shadow-lg rounded-full px-3 py-2">
-      <div className="h-2 w-40 rounded-full bg-gray-200 overflow-hidden mr-2">
-        <div className="h-2 bg-green-500" style={{ width: pct + "%" }} />
-      </div>
-      <span className="text-xs font-semibold text-gray-700">
-        {Math.round(pct)}%
-      </span>
-    </div>
-  );
-}
-
-const sampleIntro = `Professional skills include teamwork, leadership, problem solving, and communication. These skills help us grow in any workplace because they are transferable. Our first lecture covered how values, beliefs, and attitudes shape our character and behaviour.`;
+const sampleIntro = `Professional skills are essential for any workplace. 
+These include communication, teamwork, leadership, problem solving 
+and values that shape our behaviours. Our first session taught us 
+how attitudes, beliefs and character guide professional conduct.`;
