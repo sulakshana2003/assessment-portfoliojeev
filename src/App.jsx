@@ -3,21 +3,28 @@ import Chapter1Section from "./pages/chapter/Chapter1";
 import Chapter2Section from "./pages/chapter/Chapter2";
 import Chapter3Section from "./pages/chapter/Chapter3";
 import Chapter4Section from "./pages/chapter/Chapter4";
+import Chapter5Section from "./pages/chapter/Chapter5.jsx";
+import Chapter6Section from "./pages/chapter/Chapter6.jsx";
+import Chapter7Section from "./pages/chapter/Chapter7.jsx";
+import Chapter8Section from "./pages/chapter/Chapter8.jsx";
+import Chapter9Section from "./pages/chapter/Chapter9.jsx";
+import Chapter10Section from "./pages/chapter/Chapter10.jsx";
+import Chapter11Section from "./pages/chapter/Chapter11.jsx";
 
 export default function AssessmentPortfolio() {
   const chapters = useMemo(
     () => [
       { id: "ch1", title: "Introduction", body: sampleIntro },
-      { id: "ch2", title: "Teamwork", body: "Clear communication and collaboration improve outcomes." },
-      { id: "ch3", title: "Communication", body: "7Cs improve clarity and confidence." },
-      { id: "ch4", title: "Leadership", body: "Good leaders inspire trust and ethical behaviour." },
-      { id: "ch5", title: "Problem Solving", body: "Use 5-Whys, Fishbone and Pareto." },
-      { id: "ch6", title: "Time Management", body: "Prioritize tasks and avoid distractions." },
-      { id: "ch7", title: "Emotional Intelligence", body: "Self-awareness and empathy matter." },
-      { id: "ch8", title: "Interview Skills", body: "STAR answers and confidence." },
-      { id: "ch9", title: "CV Writing", body: "Tailor and highlight achievements." },
-      { id: "ch10", title: "Etiquette", body: "Professional behaviour in formal settings." },
-      { id: "ch11", title: "Research Writing", body: "Academic integrity and citations." },
+      { id: "ch2", title: "CV & Cover Letter", body: "Clear communication and collaboration improve outcomes." },
+      { id: "ch3", title: "Interview Skills", body: "7Cs improve clarity and confidence." },
+      { id: "ch4", title: "Portfolio Management", body: "Good leaders inspire trust and ethical behaviour." },
+      { id: "ch5", title: "Speaking Skills", body: "Use 5-Whys, Fishbone and Pareto." },
+      { id: "ch6", title: "Project Proposal Writing", body: "Prioritize tasks and avoid distractions." },
+      { id: "ch7", title: "Food Festival", body: "Self-awareness and empathy matter." },
+      { id: "ch8", title: "EI", body: "STAR answers and confidence." },
+      { id: "ch9", title: "Dining Etiquette", body: "Tailor and highlight achievements." },
+      { id: "ch10", title: "Telephone Etiquette", body: "Professional behaviour in formal settings." },
+      { id: "ch11", title: "Email Etiquette", body: "Academic integrity and citations." },
     ],
     []
   );
@@ -78,6 +85,21 @@ export default function AssessmentPortfolio() {
                 return <Chapter3Section />;
               case "ch4":
                 return <Chapter4Section />;
+              case "ch5":
+                return <Chapter5Section />;
+              case "ch6":
+                return <Chapter6Section />;
+              case "ch7":
+                return <Chapter7Section />;
+              case "ch8":
+                return <Chapter8Section />;
+              case "ch9":
+                return <Chapter9Section />;
+              case "ch10":
+                return <Chapter10Section />;
+              case "ch11":
+                return <Chapter11Section />;
+
               default:
                 return (
                   <p className="text-gray-700 leading-relaxed">{c.body}</p>
